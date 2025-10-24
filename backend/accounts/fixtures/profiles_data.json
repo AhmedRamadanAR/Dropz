@@ -1,0 +1,521 @@
+[
+  {
+    "model": "accounts.customerprofile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "default_shipping_address": 1,
+      "loyalty_points": 120,
+      "created_at": "2025-08-22T11:00:00Z",
+      "updated_at": "2025-08-22T11:00:00Z"
+    }
+  },
+  {
+    "model": "accounts.customerprofile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "default_shipping_address": 2,
+      "loyalty_points": 75,
+      "created_at": "2025-08-22T11:01:00Z",
+      "updated_at": "2025-08-22T11:01:00Z"
+    }
+  },
+  {
+    "model": "accounts.customerprofile",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "default_shipping_address": 3,
+      "loyalty_points": 30,
+      "created_at": "2025-08-22T11:02:00Z",
+      "updated_at": "2025-08-22T11:02:00Z"
+    }
+  },
+    {
+      "model": "accounts.selleraccount",
+      "pk": 1,
+      "fields": {
+        "user": 4,
+        "company_name": "Ahmed's Store",
+        "business_license": "LIC-AS-2025-001",
+        "tax_id": "EG123450001",
+        "verified": true,
+        "account_status": "active",
+        "created_at": "2025-08-22T11:03:00Z",
+        "updated_at": "2025-08-22T11:03:00Z"
+      }
+    },
+    {
+      "model": "accounts.selleraccount",
+      "pk": 2,
+      "fields": {
+        "user": 5,
+        "company_name": "Mohamed's Store",
+        "business_license": "LIC-MS-2025-002",
+        "tax_id": "EG123450002",
+        "verified": false,
+        "account_status": "pending",
+        "created_at": "2025-08-22T11:04:00Z",
+        "updated_at": "2025-08-22T11:04:00Z"
+      }
+    },
+    {
+      "model": "accounts.selleraccount",
+      "pk": 3,
+      "fields": {
+        "user": 6,
+        "company_name": "Layla's Store",
+        "business_license": "LIC-LS-2025-003",
+        "tax_id": "EG123450003",
+        "verified": true,
+        "account_status": "active",
+        "created_at": "2025-08-22T11:05:00Z",
+        "updated_at": "2025-08-22T11:05:00Z"
+      }
+    },
+  {
+    "model": "accounts.shippingcompany",
+    "pk": 1,
+    "fields": {
+      "user": 7,
+      "company_name": "Sami Logistics",
+      "company_person": "Sami",
+      "contract_signed": true,
+      "created_at": "2025-08-22T11:06:00Z",
+      "updated_at": "2025-08-22T11:06:00Z"
+    }
+  },
+  {
+    "model": "accounts.shippingcompany",
+    "pk": 2,
+    "fields": {
+      "user": 8,
+      "company_name": "Rana Shipping Co.",
+      "company_person": "Rana",
+      "contract_signed": false,
+      "created_at": "2025-08-22T11:07:00Z",
+      "updated_at": "2025-08-22T11:07:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 4,
+    "fields": {
+      "user": 11,
+      "company_name": "Nile Threads",
+      "business_license": "LIC-NT-2025-004",
+      "tax_id": "EG123456001",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:10:00Z",
+      "updated_at": "2025-08-22T11:10:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 5,
+    "fields": {
+      "user": 12,
+      "company_name": "Cairo Gents",
+      "business_license": "LIC-CG-2025-005",
+      "tax_id": "EG123456002",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-22T11:11:00Z",
+      "updated_at": "2025-08-22T11:11:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 6,
+    "fields": {
+      "user": 13,
+      "company_name": "Pharaoh Suits",
+      "business_license": "LIC-PS-2025-006",
+      "tax_id": "EG123456003",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:12:00Z",
+      "updated_at": "2025-08-22T11:12:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 7,
+    "fields": {
+      "user": 14,
+      "company_name": "Giza Denim",
+      "business_license": "LIC-GD-2025-007",
+      "tax_id": "EG123456004",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:13:00Z",
+      "updated_at": "2025-08-22T11:13:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 8,
+    "fields": {
+      "user": 15,
+      "company_name": "Lotus Menswear",
+      "business_license": "LIC-LM-2025-008",
+      "tax_id": "EG123456005",
+      "verified": false,
+      "account_status": "suspended",
+      "created_at": "2025-08-22T11:14:00Z",
+      "updated_at": "2025-08-22T11:14:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 9,
+    "fields": {
+      "user": 16,
+      "company_name": "Sphinx Style",
+      "business_license": "LIC-SS-2025-009",
+      "tax_id": "EG123456006",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:15:00Z",
+      "updated_at": "2025-08-22T11:15:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 10,
+    "fields": {
+      "user": 17,
+      "company_name": "Luxor Tailors",
+      "business_license": "LIC-LT-2025-010",
+      "tax_id": "EG123456007",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:16:00Z",
+      "updated_at": "2025-08-22T11:16:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 11,
+    "fields": {
+      "user": 18,
+      "company_name": "Alexandria Classics",
+      "business_license": "LIC-AC-2025-011",
+      "tax_id": "EG123456008",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-22T11:17:00Z",
+      "updated_at": "2025-08-22T11:17:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 12,
+    "fields": {
+      "user": 19,
+      "company_name": "Delta Wear",
+      "business_license": "LIC-DW-2025-012",
+      "tax_id": "EG123456009",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:18:00Z",
+      "updated_at": "2025-08-22T11:18:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 13,
+    "fields": {
+      "user": 20,
+      "company_name": "Karnak Clothiers",
+      "business_license": "LIC-KC-2025-013",
+      "tax_id": "EG123456010",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-22T11:19:00Z",
+      "updated_at": "2025-08-22T11:19:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 14,
+    "fields": {
+      "user": 21,
+      "company_name": "Nile Couture",
+      "business_license": "LIC-NC-2025-014",
+      "tax_id": "EG223456001",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:00:00Z",
+      "updated_at": "2025-08-23T10:00:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 15,
+    "fields": {
+      "user": 22,
+      "company_name": "Cairo Wear",
+      "business_license": "LIC-CW-2025-015",
+      "tax_id": "EG223456002",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-23T10:02:00Z",
+      "updated_at": "2025-08-23T10:02:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 16,
+    "fields": {
+      "user": 23,
+      "company_name": "Lotus Fashion",
+      "business_license": "LIC-LF-2025-016",
+      "tax_id": "EG223456003",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:04:00Z",
+      "updated_at": "2025-08-23T10:04:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 17,
+    "fields": {
+      "user": 24,
+      "company_name": "Alex Style",
+      "business_license": "LIC-AS-2025-017",
+      "tax_id": "EG223456004",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:06:00Z",
+      "updated_at": "2025-08-23T10:06:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 18,
+    "fields": {
+      "user": 25,
+      "company_name": "Pharaoh Couture",
+      "business_license": "LIC-PC-2025-018",
+      "tax_id": "EG223456005",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-23T10:08:00Z",
+      "updated_at": "2025-08-23T10:08:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 19,
+    "fields": {
+      "user": 26,
+      "company_name": "Giza Glam",
+      "business_license": "LIC-GG-2025-019",
+      "tax_id": "EG223456006",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:10:00Z",
+      "updated_at": "2025-08-23T10:10:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 20,
+    "fields": {
+      "user": 27,
+      "company_name": "Delta Fashion",
+      "business_license": "LIC-DF-2025-020",
+      "tax_id": "EG223456007",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:12:00Z",
+      "updated_at": "2025-08-23T10:12:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 21,
+    "fields": {
+      "user": 28,
+      "company_name": "Luxor Wear",
+      "business_license": "LIC-LW-2025-021",
+      "tax_id": "EG223456008",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-23T10:14:00Z",
+      "updated_at": "2025-08-23T10:14:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 22,
+    "fields": {
+      "user": 29,
+      "company_name": "Pyramids Style",
+      "business_license": "LIC-PS-2025-022",
+      "tax_id": "EG223456009",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:16:00Z",
+      "updated_at": "2025-08-23T10:16:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 23,
+    "fields": {
+      "user": 30,
+      "company_name": "Cleopatra Couture",
+      "business_license": "LIC-CC-2025-023",
+      "tax_id": "EG223456010",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-23T10:18:00Z",
+      "updated_at": "2025-08-23T10:18:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 24,
+    "fields": {
+      "user": 31,
+      "company_name": "Nile Electronics",
+      "business_license": "LIC-NE-2025-024",
+      "tax_id": "EG323456001",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:01:00Z",
+      "updated_at": "2025-08-24T09:01:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 25,
+    "fields": {
+      "user": 32,
+      "company_name": "Cairo Tech",
+      "business_license": "LIC-CT-2025-025",
+      "tax_id": "EG323456002",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:03:00Z",
+      "updated_at": "2025-08-24T09:03:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 26,
+    "fields": {
+      "user": 33,
+      "company_name": "Pyramids Gadgets",
+      "business_license": "LIC-PG-2025-026",
+      "tax_id": "EG323456003",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-24T09:05:00Z",
+      "updated_at": "2025-08-24T09:05:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 27,
+    "fields": {
+      "user": 34,
+      "company_name": "Delta Electronics",
+      "business_license": "LIC-DE-2025-027",
+      "tax_id": "EG323456004",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:07:00Z",
+      "updated_at": "2025-08-24T09:07:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 28,
+    "fields": {
+      "user": 35,
+      "company_name": "Pharaonic Tech",
+      "business_license": "LIC-PT-2025-028",
+      "tax_id": "EG323456005",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:09:00Z",
+      "updated_at": "2025-08-24T09:09:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 29,
+    "fields": {
+      "user": 36,
+      "company_name": "Giza Smart",
+      "business_license": "LIC-GS-2025-029",
+      "tax_id": "EG323456006",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:11:00Z",
+      "updated_at": "2025-08-24T09:11:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 30,
+    "fields": {
+      "user": 37,
+      "company_name": "Luxor Gadgets",
+      "business_license": "LIC-LG-2025-030",
+      "tax_id": "EG323456007",
+      "verified": false,
+      "account_status": "pending",
+      "created_at": "2025-08-24T09:13:00Z",
+      "updated_at": "2025-08-24T09:13:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 31,
+    "fields": {
+      "user": 38,
+      "company_name": "Tech Bazaar",
+      "business_license": "LIC-TB-2025-031",
+      "tax_id": "EG323456008",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:15:00Z",
+      "updated_at": "2025-08-24T09:15:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 32,
+    "fields": {
+      "user": 39,
+      "company_name": "Electro Egypt",
+      "business_license": "LIC-EE-2025-032",
+      "tax_id": "EG323456009",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:17:00Z",
+      "updated_at": "2025-08-24T09:17:00Z"
+    }
+  },
+  {
+    "model": "accounts.selleraccount",
+    "pk": 33,
+    "fields": {
+      "user": 40,
+      "company_name": "Cleo Electronics",
+      "business_license": "LIC-CE-2025-033",
+      "tax_id": "EG323456010",
+      "verified": true,
+      "account_status": "active",
+      "created_at": "2025-08-24T09:19:00Z",
+      "updated_at": "2025-08-24T09:19:00Z"
+    }
+  }
+]

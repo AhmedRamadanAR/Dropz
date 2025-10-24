@@ -1,0 +1,3265 @@
+{
+	"info": {
+		"_postman_id": "ae8aa273-bceb-40de-aab1-233a8ba95e0b",
+		"name": "Dropz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27497014",
+		"_collection_link": "https://dropzteam.postman.co/workspace/Dropz~7e86361d-31dc-473a-b065-1e2395bed9cf/collection/27497014-ae8aa273-bceb-40de-aab1-233a8ba95e0b?action=share&source=collection_link&creator=27497014"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"saradoe@gmail.com\",\r\n    \"password\": \"aabcdefg!1A\",\r\n    \"confirm_password\": \"aabcdefg!1A\",\r\n    \"first_name\": \"Sara\",\r\n    \"last_name\": \"Doe\",\r\n    \"role\": \"customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/register/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response && pm.response.json) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.access) {",
+									"        pm.environment.set(\"ACCESS_TOKEN\", jsonData.access);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ramadan@gmail.com\",\r\n    \"password\": \"aabcdefg!1A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"hasnaa.customer@example.com\",\r\n    \"password\": \"Password1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						},
+						{
+							"name": "Seller",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ahmed.elsharkawy@cairogents.eg\",\r\n    \"password\": \"Password1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Shipper",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"sami.shipping@example.com\",\r\n    \"password\": \"Password1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "LogOut",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MTgxNzEzLCJpYXQiOjE3NTQxNzgxMTMsImp0aSI6ImNmNTU2NGEwMDE1MDRlZmE5Y2YwZmEwODVjYmMxOTY4IiwidXNlcl9pZCI6IjEwIn0.Gjtb43p9eGhYQc0rQH0woDay6boYNJph0UGaGAdqgC0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDc4MjkxMywiaWF0IjoxNzU0MTc4MTEzLCJqdGkiOiI1MTI1NTkzYTMyMDM0NjYwOTkzMjc4OTQyYWZhNjE1MCIsInVzZXJfaWQiOiIxMCJ9.RozuydESyDsm8iMvDZBmYhW_UeVtdg9YsbdPy8YDUNQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/logout/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDgwMDAzNiwiaWF0IjoxNzU0MTk1MjM2LCJqdGkiOiJmYWNkNDM1YWJjYmE0NmI1YTc3YjkzZmE4YzJmYmQwYSIsInVzZXJfaWQiOiIxMCIsInJvbGUiOiJjdXN0b21lciJ9.hFcfCSTdzKmMNXYDIl3QIhbvqHe3x15gVKoDY56LY8I\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/refresh_token/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh_token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Get SellerAccount",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/sellers/me",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"sellers",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get SellerAccount",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/accounts/sellers/me",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"sellers",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "PATCH SellerAccount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company_name\": \"Morgan & Partners\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/sellers/me",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"sellers",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CustomerProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/customers/me",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"customers",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET CustomerProfile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/accounts/customers/me",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"customers",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "PATCH CustomerProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"default_shipping_address\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/customers/me/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"customers",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/users/me/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"01234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/users/me/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ShippingCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/accounts/shippers/me/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"shippers",
+								"me",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET ShippingCompany",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/api/accounts/shippers/me/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"shippers",
+										"me",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "PATCH ShippingCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company_name\": \"Fast Shippers\",\n    \"company_person\": \"Tom Doe\",\n    \"contract_signed\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/accounts/shippers/me/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"shippers",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Filtered Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/?search=Giza Wear",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Giza Wear"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Addresses",
+			"item": [
+				{
+					"name": "List Addresses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Addresses",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/addresses/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"addresses",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Retrieve Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve Address",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/addresses/:id/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"addresses",
+										":id",
+										""
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Create Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"street\": \"A\",\n  \"city\": \"Cairo\",\n  \"governorate\": \"Cairo\",\n  \"postal_code\": \"12345\",\n  \"country\": \"Egypt\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"city\": \"Giza\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/:id/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Default Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/addresses/:id/set-default/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"addresses",
+								":id",
+								"set-default",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductReviews",
+			"item": [
+				{
+					"name": "Get All Reviews for a product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/<review-slug>/reviews",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"<review-slug>",
+								"reviews"
+							]
+						},
+						"description": "GET /api/products/{slug}/reviews/\n\nexample : GET /api/products/iphone-15/reviews/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reviews/<review-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"<review-id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0OTA4OTA5LCJpYXQiOjE3NTQ5MDUzMDksImp0aSI6ImQ0NzQyOTMxMzg0MTRhMTNhOThiNjM1YmM4YmViZjY3IiwidXNlcl9pZCI6IjE4Iiwicm9sZSI6ImN1c3RvbWVyIn0.xe0jG7gkmmANQ3uGaUnjLSaO4t3HuKRr6lpcq3EH1l8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"rating\": 4,\r\n  \"comment\": \"great gedaan2 \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/<product-slug>/reviews",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"<product-slug>",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0OTA4OTA5LCJpYXQiOjE3NTQ5MDUzMDksImp0aSI6ImQ0NzQyOTMxMzg0MTRhMTNhOThiNjM1YmM4YmViZjY3IiwidXNlcl9pZCI6IjE4Iiwicm9sZSI6ImN1c3RvbWVyIn0.xe0jG7gkmmANQ3uGaUnjLSaO4t3HuKRr6lpcq3EH1l8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"rating\": 1,\r\n  \"comment\":\"very bad item\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}} /api/reviews/<review-id>",
+							"host": [
+								"{{base_url}} "
+							],
+							"path": [
+								"api",
+								"reviews",
+								"<review-id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0OTA4NTgzLCJpYXQiOjE3NTQ5MDQ5ODMsImp0aSI6IjEzOTNlZGI1ZTRjNjQ3M2VhYmNkNDNmYzJhNDU2ZjRiIiwidXNlcl9pZCI6IjE2Iiwicm9sZSI6ImN1c3RvbWVyIn0.4_omvmUZtcRFN4XGYAgFxKABLtQi7itfe_4qjBARjMs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reviews/<review-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"<review-id>"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/?category__slug=mobiles&min_price=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "category__slug",
+									"value": "mobiles"
+								},
+								{
+									"key": "min_price",
+									"value": "1000"
+								}
+							]
+						},
+						"description": "You can filter by min_price, max_price ,is_active and category_slug"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/products/<id>\t",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"<id>\t"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "iPhone 14 Pro Max\n",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Best iPhone with ProMotion display\n",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1399.99\n",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "stock_quantity\t",
+									"value": "10\n",
+									"type": "text"
+								},
+								{
+									"key": "is_active\t",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/products/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						},
+						"description": "This endpoint is for seller only"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MDIzMjg4LCJpYXQiOjE3NTUwMTk2ODgsImp0aSI6ImIyOWE4OWQwMDg4ZTRhZjg5MWY1ZWJlZjA1ZDBjOWI4IiwidXNlcl9pZCI6IjIzIiwicm9sZSI6InNlbGxlciJ9.v6x493U55T_J6oocB4f6gUPM_KUBVpD5byelneb7cDo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/4/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update partial Product (Seller Only) Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Updated Product\",\r\n  \"description\": \"Updated description\",\r\n  \"price\": 200.0,\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MDIzMjg4LCJpYXQiOjE3NTUwMTk2ODgsImp0aSI6ImIyOWE4OWQwMDg4ZTRhZjg5MWY1ZWJlZjA1ZDBjOWI4IiwidXNlcl9pZCI6IjIzIiwicm9sZSI6InNlbGxlciJ9.v6x493U55T_J6oocB4f6gUPM_KUBVpD5byelneb7cDo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/4/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Support",
+			"item": [
+				{
+					"name": "Create New Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjA5Njc1LCJpYXQiOjE3NTUyMDYwNzUsImp0aSI6ImRmNjczOWM3MmYzZjQzZWViNzU2MDdlMDAyNzAzMmQ5IiwidXNlcl9pZCI6IjEwIiwicm9sZSI6ImN1c3RvbWVyIn0.AIN3Bu_DeoIe3HoD03PQdOzToS6m-PTYQvW1NQqYdvc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"Problem with my order\",\r\n    \"description\": \"I need to know why my order is late\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/support/tickets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"support",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show the Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjA5Njc1LCJpYXQiOjE3NTUyMDYwNzUsImp0aSI6ImRmNjczOWM3MmYzZjQzZWViNzU2MDdlMDAyNzAzMmQ5IiwidXNlcl9pZCI6IjEwIiwicm9sZSI6ImN1c3RvbWVyIn0.AIN3Bu_DeoIe3HoD03PQdOzToS6m-PTYQvW1NQqYdvc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/support/tickets/4/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"support",
+								"tickets",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Messages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MTgyODQyLCJpYXQiOjE3NTUxNzkyNDIsImp0aSI6IjY0ZWYyMDEyMjg3OTQ1YzM5YzcyOTQ3ZDk5MWIyNjljIiwidXNlcl9pZCI6IjciLCJyb2xlIjoiY3VzdG9tZXIifQ.HFFz56Fj5-WXrUUycxAde_QTxW0-d9piHo1ACtzpGS8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Write ur message to the admin here\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/support/tickets/id/messages/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"support",
+								"tickets",
+								"id",
+								"messages",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Get Cart items",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/items",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "response data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/cart/items",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:37:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1472"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created_at\": \"2025-08-14T02:34:35.199015Z\",\n    \"updated_at\": \"2025-08-14T15:37:56.596369Z\",\n    \"id\": 1,\n    \"user\": 29,\n    \"cart_items\": [\n        {\n            \"cart_item_id\": 13,\n            \"product\": {\n                \"id\": 4,\n                \"seller\": \"Ahmed Ramadan - \",\n                \"title\": \"controller1\",\n                \"slug\": \"controller\",\n                \"description\": \"dcsddfs\",\n                \"image\": \"/media/product_images/442_V8D6Z0Q.png\",\n                \"price\": \"20.00\",\n                \"stock_quantity\": 6,\n                \"is_active\": true,\n                \"created_at\": \"2025-08-09T12:38:59.627752Z\",\n                \"updated_at\": \"2025-08-15T02:09:55.872618Z\",\n                \"category\": 11\n            },\n            \"quantity\": 6,\n            \"item_subtotal\": 120,\n            \"status\": \"available\",\n            \"message\": \"Product is available and in stock\"\n        },\n        {\n            \"cart_item_id\": 15,\n            \"product\": {\n                \"id\": 2,\n                \"seller\": \"Ahmed Ramadan - \",\n                \"title\": \"fff\",\n                \"slug\": \"11\",\n                \"description\": \"fdsfds\",\n                \"image\": \"/media/product_images/442_vKtWUU2.png\",\n                \"price\": \"0.09\",\n                \"stock_quantity\": 2,\n                \"is_active\": true,\n                \"created_at\": \"2025-08-09T12:25:51.088558Z\",\n                \"updated_at\": \"2025-08-09T12:25:51.088567Z\",\n                \"category\": 1\n            },\n            \"quantity\": 2,\n            \"item_subtotal\": 0.18,\n            \"status\": \"available\",\n            \"message\": \"Product is available and in stock\"\n        },\n        {\n            \"cart_item_id\": 14,\n            \"product\": {\n                \"id\": 6,\n                \"seller\": \"Sara Doe - \",\n                \"title\": \"iPhone 14 Pro Max\",\n                \"slug\": \"iphone-14-pro-max\",\n                \"description\": \"Best iPhone with ProMotion display\",\n                \"image\": \"/media/product_images/download.jpg\",\n                \"price\": \"1399.99\",\n                \"stock_quantity\": 10,\n                \"is_active\": true,\n                \"created_at\": \"2025-08-12T18:06:50.598167Z\",\n                \"updated_at\": \"2025-08-12T18:06:50.598181Z\",\n                \"category\": 1\n            },\n            \"quantity\": 4,\n            \"item_subtotal\": 5599.96,\n            \"status\": \"available\",\n            \"message\": \"Product is available and in stock\"\n        }\n    ],\n    \"total_price\": 5720.14,\n    \"count\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Cart Item Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjI2NTQ0LCJpYXQiOjE3NTUyMjI5NDQsImp0aSI6IjA2NjNkYThmZmUzNTRmZDM5OWUxMTA4MmIzYzU0OTA3IiwidXNlcl9pZCI6IjI5Iiwicm9sZSI6ImN1c3RvbWVyIn0.3H7y_YEh1iJNOFr6xThRljsETaLRvnFOQomABgYbK-o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/items/<int:cart-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"items",
+								"<int:cart-id>"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "response data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/cart/items/14",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"items",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:49:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "491"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart_item_id\": 14,\n    \"product\": {\n        \"id\": 6,\n        \"seller\": \"Sara Doe - \",\n        \"title\": \"iPhone 14 Pro Max\",\n        \"slug\": \"iphone-14-pro-max\",\n        \"description\": \"Best iPhone with ProMotion display\",\n        \"image\": \"http://localhost:8000/media/product_images/download.jpg\",\n        \"price\": \"1399.99\",\n        \"stock_quantity\": 10,\n        \"is_active\": true,\n        \"created_at\": \"2025-08-12T18:06:50.598167Z\",\n        \"updated_at\": \"2025-08-12T18:06:50.598181Z\",\n        \"category\": 1\n    },\n    \"quantity\": 2,\n    \"item_subtotal\": 2799.98,\n    \"status\": \"available\",\n    \"message\": \"Product is available and in stock\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Cart Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"product_id\": 44,\r\n  \"quantity\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart/additem",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"additem"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "fail response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"product_id\": 4,\r\n  \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/cart/additem",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"additem"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:49:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"non_field_errors\": [\n        \"Not enough stock available.\"\n    ]\n}"
+						},
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"product_id\": 5,\r\n  \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/cart/additem",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"additem"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:50:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Item added to cart successfully.\",\n    \"product_id\": 5,\n    \"quantity\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Increase Quantity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjI2NTQ0LCJpYXQiOjE3NTUyMjI5NDQsImp0aSI6IjA2NjNkYThmZmUzNTRmZDM5OWUxMTA4MmIzYzU0OTA3IiwidXNlcl9pZCI6IjI5Iiwicm9sZSI6ImN1c3RvbWVyIn0.3H7y_YEh1iJNOFr6xThRljsETaLRvnFOQomABgYbK-o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/increase/<int-cart-item-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"increase",
+								"<int-cart-item-id>"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/cart/increase/14",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"increase",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:51:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Quantity increased.\",\n    \"product_id\": 6,\n    \"quantity\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Decrease Quantity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjI2NTQ0LCJpYXQiOjE3NTUyMjI5NDQsImp0aSI6IjA2NjNkYThmZmUzNTRmZDM5OWUxMTA4MmIzYzU0OTA3IiwidXNlcl9pZCI6IjI5Iiwicm9sZSI6ImN1c3RvbWVyIn0.3H7y_YEh1iJNOFr6xThRljsETaLRvnFOQomABgYbK-o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/decrease/<int-cart-item-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"decrease",
+								"<int-cart-item-id>"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "fail response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/cart/decrease/<int-cart-item-id>",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"decrease",
+										"<int-cart-item-id>"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:37:43 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Quantity cannot be less than 1.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit quantity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MjMwMjA3LCJpYXQiOjE3NTUyMjY2MDcsImp0aSI6ImQ1NGFlZjVmODA5ODQwOTI5ZDI5ODdmZTNlMTA2YzcxIiwidXNlcl9pZCI6IjI5Iiwicm9sZSI6ImN1c3RvbWVyIn0.uxlvrJ0HuU9sApACMVoClfi-dsQkZ4-m8frADKtbj-I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quantity\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart/update/<int:card-item-id>",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"update",
+								"<int:card-item-id>"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "succes and quantity in stock response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"quantity\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/cart/update/13",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"update",
+										"13"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:58:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"quantity\": 6\n}"
+						},
+						{
+							"name": "fail and quantity not in stock",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"quantity\": 9\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/cart/update/13",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"update",
+										"13"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 02:59:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"quantity\": [\n        \"Not enough stock available.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Cart Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1Mjc0NzQ3LCJpYXQiOjE3NTUyNzExNDcsImp0aSI6IjYxYzc5ZTZlOGIzNjQ1MDM5NTQ0NWI5NmJjODQ1MDBjIiwidXNlcl9pZCI6IjI5Iiwicm9sZSI6ImN1c3RvbWVyIn0.TXwUS9vDXa9vtX5V8xanniDwVvmjELT6p4zSW7ddo18",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cart/delete/14",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"delete",
+								"14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/cart/delete/14",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"cart",
+										"delete",
+										"14"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 15 Aug 2025 15:27:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.12.11"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, origin"
+								},
+								{
+									"key": "Allow",
+									"value": "DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Item removed from cart successfully.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "## 🛒 `GET /cart/items` – Get All Cart Items\n\n**Description**: Returns a list of all items in the authenticated user's cart, including product details and status.\n\n### 🔒 Authentication\n\n- Required: Yes (Customer only)\n    \n\n### 📥 Request\n\n- No body required\n    \n\n### ✅ Success Response `200 OK`\n\n``` json\n[\n  {\n    \"cart_item_id\": 3,\n    \"product\": {\n      \"id\": 12,\n      \"title\": \"Wireless Headphones\",\n      \"slug\": \"wireless-headphones\",\n      \"description\": \"High-quality wireless headphones with noise cancellation.\",\n      \"image\": \"http://localhost:8000/media/product_images/headphones.jpg\",\n      \"price\": \"149.99\",\n      \"stock_quantity\": 20,\n      \"is_active\": true,\n      \"category\": {\n        \"id\": 4,\n        \"name\": \"Electronics\",\n        \"slug\": \"electronics\",\n        \"parent_category\": null\n      },\n      \"seller\": {\n        \"id\": 7,\n        \"company_name\": \"TechZone\"\n      },\n      \"created_at\": \"2025-08-15T09:31:00Z\",\n      \"updated_at\": \"2025-08-15T09:31:00Z\"\n    },\n    \"quantity\": 2,\n    \"item_subtotal\": \"299.98\",\n    \"status\": \"available\",\n    \"message\": \"Product is available and in stock\"\n  }\n]\n\n ```\n\n### ❌ Error Response\n\n``` json\n{\n  \"detail\": \"Authentication credentials were not provided.\"\n}\n\n ```\n\n---\n\n## ➕ `POST /cart/additem` – Add Product to Cart\n\n**Description**: Adds a product to the authenticated user’s cart or increases quantity if the product already exists in the cart.\n\n### 🔒 Authentication\n\n- Required: Yes\n    \n\n### 📥 Request Body\n\n``` json\n{\n  \"product_id\": 12,\n  \"quantity\": 2\n}\n\n ```\n\n### ✅ Success Response `201 CREATED` (New item)\n\n``` json\n{\n  \"detail\": \"Item added to cart successfully.\",\n  \"product_id\": 12,\n  \"quantity\": 2\n}\n\n ```\n\n### ✅ Success Response `200 OK` (Quantity updated)\n\n``` json\n{\n  \"detail\": \"Quantity updated successfully.\",\n  \"product_id\": 12,\n  \"new_quantity\": 4\n}\n\n ```\n\n### ❌ Error Responses\n\n#### Quantity exceeds stock\n\n``` json\n{\n  \"detail\": \"Sorry this quantity (6) exceeds stock (5)\"\n}\n\n ```\n\n#### Invalid product or quantity\n\n``` json\n{\n  \"non_field_errors\": [\"Product does not exist.\"]\n}\n\n ```\n\n#### Inactive product\n\n``` json\n{\n  \"non_field_errors\": [\"This product is not available anymore.\"]\n}\n\n ```\n\n---\n\n## 🧺 `GET /cart/items/` – Get Single Cart Item\n\n**Description**: Returns details of a specific cart item by ID.\n\n### ✅ Response `200 OK`\n\n``` json\n{\n  \"cart_item_id\": 3,\n  \"product\": {\n    \"id\": 12,\n    \"title\": \"Wireless Headphones\",\n    \"slug\": \"wireless-headphones\",\n    \"description\": \"High-quality wireless headphones with noise cancellation.\",\n    \"image\": \"http://localhost:8000/media/product_images/headphones.jpg\",\n    \"price\": \"149.99\",\n    \"stock_quantity\": 20,\n    \"is_active\": true,\n    \"category\": {\n      \"id\": 4,\n      \"name\": \"Electronics\",\n      \"slug\": \"electronics\",\n      \"parent_category\": null\n    },\n    \"seller\": {\n      \"id\": 7,\n      \"company_name\": \"TechZone\"\n    },\n    \"created_at\": \"2025-08-15T09:31:00Z\",\n    \"updated_at\": \"2025-08-15T09:31:00Z\"\n  },\n  \"quantity\": 2,\n  \"item_subtotal\": \"299.98\",\n  \"status\": \"available\",\n  \"message\": \"Product is available and in stock\"\n}\n\n ```\n\n### ❌ Response `404 NOT FOUND`\n\n``` json\n{\n  \"detail\": \"Not found.\"\n}\n\n ```\n\n---\n\n## 🔼 `POST /cart/increase/` – Increase Quantity by 1\n\n### ✅ Response\n\n``` json\n{\n  \"detail\": \"Quantity increased.\",\n  \"product_id\": 12,\n  \"quantity\": 3\n}\n\n ```\n\n### ❌ Not enough stock\n\n``` json\n{\n  \"detail\": \"Not enough stock\"\n}\n\n ```\n\n---\n\n## 🔽 `POST /cart/decrease/` – Decrease Quantity by 1\n\n### ✅ Response\n\n``` json\n{\n  \"detail\": \"Quantity decreased.\",\n  \"product_id\": 12,\n  \"quantity\": 1\n}\n\n ```\n\n### ❌ Cannot go below 1\n\n``` json\n{\n  \"detail\": \"Quantity cannot be less than 1.\"\n}\n\n ```\n\n---\n\n## 🛠️ `PATCH /cart/update/` – Set Quantity\n\n**Description**: Updates the quantity of a cart item to a specific value.\n\n### 📥 Request Body\n\n``` json\n{\n  \"quantity\": 4\n}\n\n ```\n\n### ✅ Response\n\n``` json\n{\n  \"cart_item_id\": 3,\n  \"product\": {\n    \"id\": 12,\n    \"title\": \"Wireless Headphones\",\n    \"slug\": \"wireless-headphones\",\n    \"description\": \"High-quality wireless headphones with noise cancellation.\",\n    \"image\": \"http://localhost:8000/media/product_images/headphones.jpg\",\n    \"price\": \"149.99\",\n    \"stock_quantity\": 20,\n    \"is_active\": true,\n    \"category\": {\n      \"id\": 4,\n      \"name\": \"Electronics\",\n      \"slug\": \"electronics\",\n      \"parent_category\": null\n    },\n    \"seller\": {\n      \"id\": 7,\n      \"company_name\": \"TechZone\"\n    },\n    \"created_at\": \"2025-08-15T09:31:00Z\",\n    \"updated_at\": \"2025-08-15T09:31:00Z\"\n  },\n  \"quantity\": 4,\n  \"item_subtotal\": \"599.96\",\n  \"status\": \"available\",\n  \"message\": \"Product is available and in stock\"\n}\n\n ```\n\n### ❌ Error Response\n\n``` json\n{\n  \"quantity\": [\"Not enough stock available.\"]\n}\n\n ```\n\n---\n\n🗑️ **DELETE /cart/delete/{cart_item_id}** – Remove Cart Item  \n**Description:** Deletes a specific item from the authenticated user's cart by its cart item ID.\n\n🔒 **Authentication**  \n  \nRequired: Yes (Customer only)\n\n📥 **Request**  \n  \nNo body required. Just provide the `cart_item_id` in the URL.\n\n📤 **URL Example**\n\n```\n{{base_url}}/api/cart/delete/14\n\n ```\n\n✅ **Success Response – 204 NO CONTENT**  \n  \nThe item was successfully deleted from the cart. No body is returned.\n\n❌ **Error Response – 404 NOT FOUND**  \n  \nIf the cart item does not exist or does not belong to the user.\n\n``` json\n{\n  \"detail\": \"Not found.\"\n}\n\n ```\n\n❌ **Error Response – 403 FORBIDDEN**  \n  \nIf the user tries to delete a cart item that they do not own.\n\n``` json\n{\n  \"detail\": \"You do not have permission to perform this action.\"\n}\n\n ```\n\n---"
+		},
+		{
+			"name": "Products (Hussein's version)",
+			"item": [
+				{
+					"name": "List Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/products/?page=1&page_size=10&search=phone&min_price=100&max_price=500&category=electronics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "phone"
+								},
+								{
+									"key": "min_price",
+									"value": "100"
+								},
+								{
+									"key": "max_price",
+									"value": "500"
+								},
+								{
+									"key": "category",
+									"value": "electronics"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/products/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product (Seller Only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Test Product\",\n  \"description\": \"A great product\",\n  \"price\": 199.99,\n  \"stock\": 10,\n  \"category\": \"electronics\",\n  \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product (Seller Only)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Product\",\n  \"description\": \"Updated description\",\n  \"price\": 149.99,\n  \"stock\": 5,\n  \"category\": \"electronics\",\n  \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product (Seller Only)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/products/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update partial Product (Seller Only)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Updated Product\",\r\n  \"description\": \"Updated description\",\r\n  \"price\": 200.0,\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/products/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WishLists",
+			"item": [
+				{
+					"name": "Get Wishlist (Customer Only)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU2MjYyNDgwLCJpYXQiOjE3NTYyNTg4ODAsImp0aSI6IjFjYTZmMWQxNThkNDQ1YWNiYWMxYzk4NzUzZDgxYjM3IiwidXNlcl9pZCI6IjEiLCJyb2xlIjoiY3VzdG9tZXIifQ.gtfR7o3ci5mSxcUXU7c0r4dzf-yM117O-wCTVfWeT0I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/wishlist/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"wishlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product to Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU2MjYyNDgwLCJpYXQiOjE3NTYyNTg4ODAsImp0aSI6IjFjYTZmMWQxNThkNDQ1YWNiYWMxYzk4NzUzZDgxYjM3IiwidXNlcl9pZCI6IjEiLCJyb2xlIjoiY3VzdG9tZXIifQ.gtfR7o3ci5mSxcUXU7c0r4dzf-yM117O-wCTVfWeT0I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"product_id\": 27\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/wishlist/add/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"wishlist",
+								"add",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Product from Wishlist",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/wishlist/remove/{{product_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"wishlist",
+								"remove",
+								"{{product_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "List My Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 1,\n    \"user\": 2,\n    \"status\": \"pending\",\n    \"shipping_address\": 3,\n    \"paymob_order_id\": null,\n    \"items\": [\n      {\n        \"id\": 10,\n        \"product\": 5,\n        \"product_title\": \"T-shirt\",\n        \"quantity\": 2,\n        \"unit_price\": \"150.00\",\n        \"total_price\": \"300.00\"\n      }\n    ],\n    \"total\": \"300.00\",\n    \"total_cents\": 30000,\n    \"created_at\": \"2025-08-25T14:11:00Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Order (by ID)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU2MTUyODQzLCJpYXQiOjE3NTYxNDkyNDMsImp0aSI6ImE3YTJlNDU0ZjVjNzQ0ZmViYTFmODA4OWMzNmZmOTdkIiwidXNlcl9pZCI6IjEiLCJyb2xlIjoiY3VzdG9tZXIifQ.NGVo4NcmVzTrptEXer5PK8TKcR6IZvEmWZaOI8AvtEQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order (Manual Items)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"shipping_address\": 3,\n  \"items\": [\n    { \"product\": 5, \"quantity\": 2 },\n    { \"product\": 7, \"quantity\": 1 }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"shipping_address\": 3,\n  \"items\": [\n    { \"product\": 5, \"quantity\": 2 },\n    { \"product\": 7, \"quantity\": 1 }\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"id\": 2,\n  \"user\": 2,\n  \"status\": \"pending\",\n  \"shipping_address\": 3,\n  \"paymob_order_id\": null,\n  \"items\": [\n    { \"id\": 11, \"product\": 5, \"product_title\": \"T-shirt\", \"quantity\": 2, \"unit_price\": \"150.00\", \"total_price\": \"300.00\" },\n    { \"id\": 12, \"product\": 7, \"product_title\": \"Sneakers\", \"quantity\": 1, \"unit_price\": \"900.00\", \"total_price\": \"900.00\" }\n  ],\n  \"total\": \"1200.00\",\n  \"total_cents\": 120000,\n  \"created_at\": \"2025-08-25T14:22:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order (staff only for status)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"status\": \"shipped\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout (Create Order from Cart)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders/checkout/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"checkout",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Example",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders/checkout/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"checkout",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \n  \"id\": 1, \n  \"status\": \"pending\", \n  \"shipping_address\": 2, \n  \"items\": [ { \n    \"id\": 5, \n    \"product\": 3, \n    \"product_title\": \"Sample Product\", \n    \"quantity\": 2, \n    \"unit_price\": \"100.00\", \n    \"total_price\": \"200.00\" } ], \n  \"total\": \"200.00\", \n  \"total_cents\": 20000, \n  \"created_at\": \"2025-08-25T12:00:00Z\" }"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Paying",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU2MjUyOTcwLCJpYXQiOjE3NTYyNDkzNzAsImp0aSI6ImU2NjJiMTAzY2FkYTRhYjE4Y2YzNTAzOGE3YjI5N2FhIiwidXNlcl9pZCI6IjEiLCJyb2xlIjoiY3VzdG9tZXIifQ.8Ort7j_nYXXPh7k9YA1Wdy32OR3mW_jwkNK-FXhjnnE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/payments/pay/<order_id>/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"payments",
+								"pay",
+								"<order_id>",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seller products",
+			"item": [
+				{
+					"name": "List My Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/seller/products/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"seller",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "iPhone 14 Pro Max\n",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Best iPhone with ProMotion display\n",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1399.99\n",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "stock_quantity",
+									"value": "10\n",
+									"type": "text"
+								},
+								{
+									"key": "is_active",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/seller/products/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"seller",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/seller/products/1/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"seller",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Product\",\n  \"description\": \"Updated description\",\n  \"price\": 249.99,\n  \"category\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/seller/products/1/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"seller",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/seller/products/1/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"seller",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "{{base_url}}",
+			"type": "default"
+		},
+		{
+			"key": "base_url",
+			"value": "{{base_url}}",
+			"type": "default"
+		},
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000/",
+			"type": "default"
+		}
+	]
+}
