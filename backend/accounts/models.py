@@ -104,6 +104,9 @@ class Status(models.TextChoices):
 
 class SellerAccount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(
+        upload_to="sellers/", null=True, blank=True
+    )
     company_name = models.CharField(max_length=255)
     business_license = models.CharField(max_length=50)
     tax_id = models.CharField(max_length=100)

@@ -117,6 +117,8 @@ class MyTokenRefreshSerializer(TokenRefreshSerializer):
 
 
 class SellerAccountSerializer(serializers.ModelSerializer):
+    profile_image = serializers.ImageField(required=False, allow_null=True)
+
     class Meta:
         model = SellerAccount
         fields = [
@@ -127,6 +129,7 @@ class SellerAccountSerializer(serializers.ModelSerializer):
             "account_status",
             "created_at",
             "updated_at",
+            "profile_image",
         ]
         read_only_fields = [
             "verified",

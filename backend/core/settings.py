@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "support.apps.SupportConfig",
     "orders",
     "payments",
+    "drf_yasg",
 ]
 
 REST_FRAMEWORK = {

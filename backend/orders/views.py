@@ -2,10 +2,10 @@ from rest_framework import status, viewsets, permissions
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from carts.models import Cart
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from addresses.models import Address
+from carts.models import CartItem
 
 
 class IsOwnerOrStaff(permissions.BasePermission):
@@ -45,19 +45,71 @@ class CheckoutView(APIView):
     def post(self, request, *args, **kwargs):
         user = request.user
 
-        # Get user's cart
-        try:
-            cart = user.cart
-        except Cart.DoesNotExist:
+        # Get cart item IDs from request
+        cart_item_ids = request.data.get("cart_items_ids", [])
+
+        if not cart_item_ids:
             return Response(
-                {"detail": "Cart does not exist."},
+                {"detail": "No cart items selected for checkout."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        cart_items = cart.cart_items.all()
+        # Validate and get cart items
+        try:
+            cart_items = CartItem.objects.filter(
+                id__in=cart_item_ids, cart__user=user
+            ).select_related("product")
+        except Exception:
+            return Response(
+                {"detail": "Invalid cart item IDs."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         if not cart_items.exists():
             return Response(
-                {"detail": "Cart is empty."},
+                {"detail": "No valid cart items found."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Check if all items belong to the same cart and user
+        distinct_carts = cart_items.values_list("cart", flat=True).distinct()
+        if len(distinct_carts) > 1:
+            return Response(
+                {"detail": "Cart items must belong to the same cart."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Validate stock and availability
+        unavailable_items = []
+        out_of_stock_items = []
+
+        for item in cart_items:
+            if not item.product.is_active:
+                unavailable_items.append(item.product.title)
+            elif item.quantity > item.product.stock_quantity:
+                out_of_stock_items.append(
+                    {
+                        "product": item.product.title,
+                        "requested": item.quantity,
+                        "available": item.product.stock_quantity,
+                    }
+                )
+
+        if unavailable_items:
+            return Response(
+                {
+                    "detail": "Some products are no longer available.",
+                    "unavailable_products": unavailable_items,
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if out_of_stock_items:
+            return Response(
+                {
+                    "detail": "Insufficient stock for some products.",
+                    "out_of_stock_products": out_of_stock_items,
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -95,19 +147,19 @@ class CheckoutView(APIView):
             shipping_address=shipping_address,
         )
 
-        # Convert cart items -> order items
+        # Convert selected cart items -> order items
         order_items = [
             OrderItem(
                 order=order,
                 product=item.product,
                 quantity=item.quantity,
-                unit_price=item.product.price,  # snapshot
+                unit_price=item.product.price,  # snapshot current price
             )
             for item in cart_items
         ]
         OrderItem.objects.bulk_create(order_items)
 
-        # Empty cart
+        # Remove only the checked-out items from cart
         cart_items.delete()
 
         return Response(

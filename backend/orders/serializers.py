@@ -18,7 +18,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True)
+    items = OrderItemSerializer(many=True, read_only=True)
     total = serializers.ReadOnlyField()
     total_cents = serializers.ReadOnlyField()
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -36,20 +36,11 @@ class OrderSerializer(serializers.ModelSerializer):
             "total_cents",
             "created_at",
         ]
-        read_only_fields = ["status", "paymob_order_id", "created_at"]
-
-    def create(self, validated_data):
-        items_data = validated_data.pop("items")
-        order = Order.objects.create(**validated_data)
-
-        for item_data in items_data:
-            product = item_data["product"]
-            quantity = item_data["quantity"]
-
-            OrderItem.objects.create(
-                order=order,
-                product=product,
-                quantity=quantity,
-                unit_price=product.price,  # snapshot price
-            )
-        return order
+        read_only_fields = [
+            "status",
+            "paymob_order_id",
+            "created_at",
+            "items",
+            "total",
+            "total_cents",
+        ]
