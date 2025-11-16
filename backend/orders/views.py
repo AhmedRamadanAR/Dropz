@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from .models import Order, OrderItem
 from .serializers import OrderSerializer
 from addresses.models import Address
-from carts.models import CartItem
+from carts.models import CartItem, Cart
 
 
 class IsOwnerOrStaff(permissions.BasePermission):
@@ -28,54 +28,47 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Order.objects.filter(user=user).order_by("-created_at")
 
     def perform_update(self, serializer):
-
         # Prevent changing status directly unless staff
         if (
             not self.request.user.is_staff
             and "status" in serializer.validated_data
         ):
             raise PermissionDenied("You cannot update order status manually.")
-
         serializer.save()
 
 
 class CheckoutView(APIView):
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrStaff]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         user = request.user
 
-        # Get cart item IDs from request
-        cart_item_ids = request.data.get("cart_items_ids", [])
-
-        if not cart_item_ids:
+        # Get cart_id from request
+        cart_id = request.data.get("cart_id")
+        
+        if not cart_id:
             return Response(
-                {"detail": "No cart items selected for checkout."},
+                {"detail": "Cart ID is required."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Validate and get cart items
+        # Validate and get the cart
         try:
-            cart_items = CartItem.objects.filter(
-                id__in=cart_item_ids, cart__user=user
-            ).select_related("product")
-        except Exception:
+            cart = Cart.objects.get(id=cart_id, user=user)
+        except Cart.DoesNotExist:
             return Response(
-                {"detail": "Invalid cart item IDs."},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"detail": "Cart not found or doesn't belong to you."},
+                status=status.HTTP_404_NOT_FOUND,
             )
+
+        # Get all cart items for this cart
+        cart_items = CartItem.objects.filter(
+            cart=cart
+        ).select_related("product")
 
         if not cart_items.exists():
             return Response(
-                {"detail": "No valid cart items found."},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Check if all items belong to the same cart and user
-        distinct_carts = cart_items.values_list("cart", flat=True).distinct()
-        if len(distinct_carts) > 1:
-            return Response(
-                {"detail": "Cart items must belong to the same cart."},
+                {"detail": "Cart is empty."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -147,7 +140,7 @@ class CheckoutView(APIView):
             shipping_address=shipping_address,
         )
 
-        # Convert selected cart items -> order items
+        # Convert all cart items -> order items
         order_items = [
             OrderItem(
                 order=order,
@@ -159,7 +152,7 @@ class CheckoutView(APIView):
         ]
         OrderItem.objects.bulk_create(order_items)
 
-        # Remove only the checked-out items from cart
+        # Clear the entire cart after checkout
         cart_items.delete()
 
         return Response(

@@ -13,14 +13,19 @@ from .permissions import IsCustomer
 from products.models import Product
 
 
-class CartItemListView(ListAPIView):
-    serializer_class = CartItemSerializer
+class CartItemListView(APIView):
     permission_classes = [IsCustomer]
 
-    def get_queryset(self):
-        return CartItem.objects.filter(cart__user=self.request.user).order_by(
-            "id"
-        )
+    def get(self, request):
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        cart_items = CartItem.objects.filter(cart=cart).order_by("id")
+        serializer = CartItemSerializer(cart_items, many=True)
+        
+        return Response({
+            "cart_id": cart.id,
+            "items": serializer.data
+        })
+
 
 
 class CartItemDetailView(RetrieveAPIView):
