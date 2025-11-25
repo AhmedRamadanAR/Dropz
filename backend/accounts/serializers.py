@@ -117,8 +117,6 @@ class MyTokenRefreshSerializer(TokenRefreshSerializer):
 
 
 class SellerAccountSerializer(serializers.ModelSerializer):
-    profile_image = serializers.ImageField(required=False, allow_null=True)
-
     class Meta:
         model = SellerAccount
         fields = [
@@ -129,7 +127,6 @@ class SellerAccountSerializer(serializers.ModelSerializer):
             "account_status",
             "created_at",
             "updated_at",
-            "profile_image",
         ]
         read_only_fields = [
             "verified",
@@ -178,7 +175,6 @@ class CustomerAddressSerializer(serializers.ModelSerializer):
 class CustomerProfileSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(source="user.id")
     default_shipping_address = CustomerAddressSerializer(read_only=True)
-    profile_image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = CustomerProfile
@@ -186,7 +182,6 @@ class CustomerProfileSerializer(serializers.ModelSerializer):
             "user_id",
             "default_shipping_address",
             "loyalty_points",
-            "profile_image",
         ]
         read_only_fields = [
             "user_id",
@@ -233,6 +228,7 @@ class UserSerializer(serializers.ModelSerializer):
             "phone_number",
             "created_at",
             "updated_at",
+            "profile_image",
         ]
         read_only_fields = ["created_at", "updated_at"]
 
