@@ -66,7 +66,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)  # Required for admin access
-
+    profile_image = models.ImageField(
+            upload_to="users/", null=True, blank=True
+        )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name", "role"]
 
@@ -87,10 +89,7 @@ class CustomerProfile(models.Model):
         blank=True,
         related_name="customer_default_address",
     )
-    profile_image = models.ImageField(
-        upload_to="users/", null=True, blank=True
-    )
-
+    
     loyalty_points = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -104,9 +103,6 @@ class Status(models.TextChoices):
 
 class SellerAccount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(
-        upload_to="sellers/", null=True, blank=True
-    )
     company_name = models.CharField(max_length=255)
     business_license = models.CharField(max_length=50)
     tax_id = models.CharField(max_length=100)
