@@ -14,6 +14,7 @@ from .serializers import (
     CustomerProfileSerializer,
     UserSerializer,
     ShippingCompanySerializer,
+    ChangePasswordSerializer,
 )
 from .models import SellerAccount, CustomerProfile, ShippingCompany
 from rest_framework.exceptions import PermissionDenied, NotFound
@@ -145,6 +146,22 @@ class UserMeView(generics.RetrieveUpdateAPIView):
         kwargs["partial"] = True
         return super().update(request, *args, **kwargs)
 
+class ChangePasswordView(generics.UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        return Response(
+            {"message": "Password changed successfully."},
+            status=status.HTTP_200_OK
+        )
 
 class ShipperMeView(generics.RetrieveUpdateAPIView):
     serializer_class = ShippingCompanySerializer

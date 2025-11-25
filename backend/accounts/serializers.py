@@ -101,7 +101,51 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         )
         return data
 
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True, write_only=True)
+    new_password = serializers.CharField(required=True, write_only=True, min_length=8)
+    confirm_new_password = serializers.CharField(required=True, write_only=True)
 
+    def validate_old_password(self, value):
+        user = self.context['request'].user
+        if not user.check_password(value):
+            raise serializers.ValidationError("Old password is incorrect.")
+        return value
+
+    def validate_new_password(self, value):
+        if len(value) < 8:
+            raise serializers.ValidationError(
+                "Password must be at least 8 characters long."
+            )
+        if not re.search(r"[A-Z]", value):
+            raise serializers.ValidationError(
+                "Password must contain at least one uppercase letter."
+            )
+        if not re.search(r"\d", value):
+            raise serializers.ValidationError(
+                "Password must contain at least one number."
+            )
+        if not re.search(r"[!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]", value):
+            raise serializers.ValidationError(
+                "Password must contain at least one special character."
+            )
+        return value
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_new_password']:
+            raise serializers.ValidationError("New passwords do not match.")
+        
+        if attrs['old_password'] == attrs['new_password']:
+            raise serializers.ValidationError("New password must be different from old password.")
+        
+        return attrs
+
+    def save(self, **kwargs):
+        user = self.context['request'].user
+        user.set_password(self.validated_data['new_password'])
+        user.save()
+        return user
+        
 class MyTokenRefreshSerializer(TokenRefreshSerializer):
     def validate(self, attrs):
         request = self.context["request"]
