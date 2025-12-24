@@ -241,9 +241,48 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 PAYMOB = {
-    "API_KEY": os.getenv("PAYMOB_API_KEY"),
-    "INTEGRATION_ID_CARD": int(os.getenv("PAYMOB_INTEGRATION_ID_CARD", "0")),
-    "IFRAME_ID": os.getenv("PAYMOB_IFRAME_ID"),
-    "HMAC_SECRET": os.getenv("PAYMOB_HMAC_SECRET"),
-    "BASE_URL": os.getenv("PAYMOB_BASE_URL", "https://accept.paymob.com/api"),
+    "API_KEY": "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TVRFd05qQXdOQ3dpYm1GdFpTSTZJbWx1YVhScFlXd2lmUS40cG5ZYV95MFp4SDMzakNfWFFfUDFfLUtwYVRKbHQ5YlRJbHdrOVozc0ZoX0Rfa0kydER2YmxER3dyaUtueXVkYUVQbTBrMm1SVTNGdnlVdHRMaVVnZw==",
+    "HMAC_SECRET": "F1ACFEAABBE5D0172D0CBBB175FFC8DA",
+    "IFRAME_ID": "979798",
+    "INTEGRATION_ID": 5399479,
+    "PAYMOB_BASE": "https://accept.paymob.com/api",
+    # Callback (ngrok during dev)
+    "CALLBACK_URL": "https://uncondemnable-brianna-hazelly.ngrok-free.dev/api/payments/webhook/",
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "payments.log"),
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+        },
+        "payments": {  
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
 }

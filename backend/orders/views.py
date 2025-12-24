@@ -152,8 +152,6 @@ class CheckoutView(APIView):
         ]
         OrderItem.objects.bulk_create(order_items)
 
-        # Clear the entire cart after checkout
-        cart_items.delete()
 
         return Response(
             OrderSerializer(order).data,

@@ -69,7 +69,7 @@ class ProductReviewSerializer(serializers.ModelSerializer):
         customer_profile = getattr(user, "customerprofile", None)
         profile_image_url = None
         if customer_profile and customer_profile.profile_image:
-            profile_image_url = customer_profile.profile_image.url
+            profile_image_url = user.profile_image
         return {
             "id": user.id,
             "name": user.first_name,
@@ -81,7 +81,6 @@ class ProductReviewSerializer(serializers.ModelSerializer):
         model = ProductReview
         fields = ["id", "product", "user", "rating", "comment", "created_at"]
         read_only_fields = ["id", "user", "created_at", "product"]
-
     def validate_rating(self, value):
         if not 1 <= value <= 5:
             raise serializers.ValidationError(

@@ -1,6 +1,4 @@
-# payments/models.py
 from django.db import models
-
 
 class Payment(models.Model):
     STATUS_CHOICES = [
@@ -21,12 +19,8 @@ class Payment(models.Model):
         on_delete=models.SET_NULL,
     )
     amount_cents = models.PositiveIntegerField()
-    status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES, default="pending"
-    )
-    method = models.CharField(
-        max_length=20, choices=METHOD_CHOICES, default="paymob"
-    )
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
+    method = models.CharField(max_length=20, choices=METHOD_CHOICES, default="paymob")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     paymob_transaction_id = models.TextField(blank=True, null=True)
@@ -35,10 +29,7 @@ class Payment(models.Model):
     response_payload = models.JSONField(blank=True, null=True)
 
     def __str__(self):
-        return (
-            f"Payment {self.paymob_transaction_id or 'N/A'} "
-            f"for Order {self.order.id if self.order else 'N/A'}"
-        )
+        return f"Payment {self.paymob_transaction_id or 'N/A'} for Order {self.order.id if self.order else 'N/A'}"
 
     @property
     def amount(self):
